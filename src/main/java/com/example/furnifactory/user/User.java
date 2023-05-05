@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.lang.Nullable;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -28,7 +28,13 @@ public class User {
     //    private String phoneNumber;
     //todo password encryption
     private String password;
-    //todo role
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinTable(name = "role_user",
+            joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "role_id")})
+    private Role role;
+    //todo role, login, color, manufacture controller,
 
     public User mapPrimitives(UserCreateCommand command) {
         this.first_name = command.getFirst_name();
@@ -37,7 +43,9 @@ public class User {
         this.dateOfBirth = LocalDate.of(2000, 1, 1);
         //this.dateOfBirth = command.getDateOfBirth();
         // this.phoneNumber = command.getPhoneNumber();
-        this.password = command.getPassword();
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        this.password = encoder.encode(command.getPassword());
+        this.role = command.getRole();
         return this;
     }
 }

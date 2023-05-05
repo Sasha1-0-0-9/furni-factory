@@ -1,0 +1,6 @@
+-- CREATE TABLE IF NOT EXISTS furniture_materials
+-- (
+--     furniture_id bigint REFERENCES furniture (id),
+--     material_id bigint REFERENCES material (id),
+--     PRIMARY KEY (furniture_id, material_id)
+-- );

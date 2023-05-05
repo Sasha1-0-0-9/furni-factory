@@ -9,8 +9,11 @@ import java.util.Set;
 @Setter
 public class FurnitureCreateCommand {
     private FurnitureType furnitureType;
-    private double height;
-    private double width;
-    private double length;
+    private int height;
+    private int width;
+    private int length;
+    private int upperSurfaceLength;
+    private int upperSurfaceWidth;
+    private int upperSurfaceHeight;
     private Set<Long> materialIds;
 }

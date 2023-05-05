@@ -19,19 +19,30 @@ public class Furniture {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id", nullable = false)
     private Long id;
+
+    @Enumerated(EnumType.STRING)
     private FurnitureType furnitureType;
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "furniture_materials",
+            joinColumns = {@JoinColumn(name = "furniture_id")},
+            inverseJoinColumns = {@JoinColumn(name = "material_id")})
     private Set<Material> materials;
     private double price;
-    private double height;
-    private double width;
-    private double length;
+    private int height;
+    private int width;
+    private int length;
+    private int upperSurfaceLength;
+    private int upperSurfaceWidth;
+    private int upperSurfaceHeight;
 
     public Furniture mapPrimitives(FurnitureCreateCommand command) {
         this.furnitureType = command.getFurnitureType();
         this.height = command.getHeight();
         this.width = command.getWidth();
         this.length = command.getLength();
+        this.upperSurfaceLength = command.getUpperSurfaceLength();
+        this.upperSurfaceHeight = command.getUpperSurfaceHeight();
+        this.upperSurfaceWidth = command.getUpperSurfaceWidth();
         return this;
     }
 }

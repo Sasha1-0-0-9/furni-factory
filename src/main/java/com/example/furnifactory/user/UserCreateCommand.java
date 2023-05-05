@@ -16,4 +16,5 @@ public class UserCreateCommand {
     private LocalDate dateOfBirth;
    // private String phoneNumber;
     private String password;
+    private Role role;
 }

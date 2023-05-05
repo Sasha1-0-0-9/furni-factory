@@ -24,7 +24,8 @@ public class Material {
     private String description;
 
     //поки не юзаю, але може пригодиться
-    //private Color color;
+    @Enumerated(EnumType.STRING)
+    private Color color;
     private long priceForSquareMeter;
 
     @OneToOne
@@ -34,9 +35,8 @@ public class Material {
     public Material mapPrimitives(MaterialCreateCommand command) {
         this.material_name = command.getName();
         this.description = command.getDescription();
-        // this.color = command.getColor();
+        this.color = command.getColor();
         this.priceForSquareMeter = command.getPriceForSquareMeter();
-        // this.countryOfOrigin = command.getCountryOfOrigin();
         return this;
     }
 

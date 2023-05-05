@@ -1,0 +1,16 @@
+ALTER TABLE furniture
+ALTER
+COLUMN height TYPE INTEGER USING height::INTEGER;
+ALTER TABLE furniture
+ALTER
+COLUMN width TYPE INTEGER USING width::INTEGER;
+ALTER TABLE furniture
+ALTER
+COLUMN length TYPE INTEGER USING length::INTEGER;
+
+ALTER TABLE furniture
+    ADD COLUMN upper_surface_width INTEGER NOT NULL;
+ALTER TABLE furniture
+    ADD COLUMN upper_surface_length INTEGER NOT NULL;
+ALTER TABLE furniture
+    ADD COLUMN upper_surface_height INTEGER NOT NULL;

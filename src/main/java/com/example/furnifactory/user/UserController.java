@@ -32,6 +32,11 @@ public class UserController {
         return ResponseEntity.ok(userService.create(command));
     }
 
+    @GetMapping("/login")
+    public ResponseEntity<String> auth(UserAuthCommand command) {
+        return ResponseEntity.ok(userService.auth(command));
+    }
+
     @DeleteMapping("/{id}")
     //кнопочку можна додать десь в профілі
     public ResponseEntity<Void> delete(@PathVariable Long id) {

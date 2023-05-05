@@ -1,11 +1,14 @@
 package com.example.furnifactory.furniture;
 
 import com.example.furnifactory.material.Material;
+import com.example.furnifactory.material.MaterialRepository;
 import com.example.furnifactory.material.MaterialService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -13,6 +16,7 @@ import java.util.stream.Collectors;
 public class FurnitureService {
     private final FurnitureRepository furnitureRepository;
     private final MaterialService materialService;
+    private final MaterialRepository materialRepository;
 
     //filters by user, order creation, etc
 
@@ -23,7 +27,12 @@ public class FurnitureService {
     public FurnitureDto create(FurnitureCreateCommand command) {
         Furniture furniture = new Furniture();
         furniture.mapPrimitives(command);
-        furniture.setMaterials(materialService.getMaterialsByIds(command.getMaterialIds()));
+        Set<Material> materialSet = new HashSet<>();
+        command.getMaterialIds()
+                .forEach(id -> {
+                    materialSet.add(materialRepository.getById(id));
+                });
+        furniture.setMaterials(materialSet);
         furniture.setPrice(calculatePrice(furniture));
         return new FurnitureDto(save(furniture));
     }
