@@ -15,7 +15,7 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
+public class User{
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -26,7 +26,7 @@ public class User {
     private String email;
     private LocalDate dateOfBirth;
     //    private String phoneNumber;
-    //todo password encryption
+    //todo password encryption, new user dto with token and role
     private String password;
 
     @ManyToOne(fetch = FetchType.EAGER)

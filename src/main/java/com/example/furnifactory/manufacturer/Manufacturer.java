@@ -9,8 +9,6 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-//чисто для адмінки, щоб створювати виробників матеріалів.
-// ніякої особливої ролі в проекті не має, додав її, щоб лити більше води в докі)))
 public class Manufacturer {
 
     @Id

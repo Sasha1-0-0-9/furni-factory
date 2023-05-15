@@ -3,7 +3,6 @@ package com.example.furnifactory.user;
 import com.example.furnifactory.config.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -43,7 +42,7 @@ public class UserService {
         }
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         String encodedPass = encoder.encode(command.getPassword());
-        if (encoder.matches(user.getPassword(), command.getPassword())){
+        if (encoder.matches(user.getPassword(), command.getPassword())) {
             throw new RuntimeException("Wrong password");
         }
         JwtTokenProvider jwtTokenProvider = new JwtTokenProvider();

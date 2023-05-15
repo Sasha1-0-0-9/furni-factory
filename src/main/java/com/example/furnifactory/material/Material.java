@@ -23,7 +23,6 @@ public class Material {
     private String material_name;
     private String description;
 
-    //поки не юзаю, але може пригодиться
     @Enumerated(EnumType.STRING)
     private Color color;
     private long priceForSquareMeter;

@@ -22,7 +22,7 @@ public class Furniture {
 
     @Enumerated(EnumType.STRING)
     private FurnitureType furnitureType;
-    @OneToMany(fetch = FetchType.EAGER)
+    @ManyToMany
     @JoinTable(name = "furniture_materials",
             joinColumns = {@JoinColumn(name = "furniture_id")},
             inverseJoinColumns = {@JoinColumn(name = "material_id")})

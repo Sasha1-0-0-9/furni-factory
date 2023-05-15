@@ -30,7 +30,7 @@ public class FurnitureService {
         Set<Material> materialSet = new HashSet<>();
         command.getMaterialIds()
                 .forEach(id -> {
-                    materialSet.add(materialRepository.getById(id));
+                    materialSet.add(materialRepository.findById(id).orElseThrow());
                 });
         furniture.setMaterials(materialSet);
         furniture.setPrice(calculatePrice(furniture));

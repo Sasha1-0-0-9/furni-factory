@@ -13,23 +13,25 @@ public class MaterialController {
     private final MaterialService materialService;
 
     @GetMapping
-    //сторінка зі списком матеріалів
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public ResponseEntity<List<MaterialDto>> getAll() {
         return ResponseEntity.ok(materialService.getAll());
     }
 
     @GetMapping("/{id}")
-    //профіль матеріалу, чисто зайти почитать дескріпшн і тд
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public ResponseEntity<MaterialDto> getById(@PathVariable Long id) {
         return ResponseEntity.ok(materialService.getById(id));
     }
 
     @PostMapping
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public ResponseEntity<MaterialDto> createMaterial(@RequestBody MaterialCreateCommand command) {
         return ResponseEntity.ok(materialService.create(command));
     }
 
     @DeleteMapping("/{id}")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public ResponseEntity<Void> deleteMaterial(@PathVariable Long id) {
         materialService.delete(id);
         return ResponseEntity.ok().build();
