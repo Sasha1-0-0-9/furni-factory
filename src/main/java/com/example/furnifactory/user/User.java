@@ -24,7 +24,6 @@ public class User{
     private String first_name;
     private String surname;
     private String email;
-    private LocalDate dateOfBirth;
     //    private String phoneNumber;
     //todo password encryption, new user dto with token and role
     private String password;
@@ -40,12 +39,11 @@ public class User{
         this.first_name = command.getFirst_name();
         this.surname = command.getSurname();
         this.email = command.getEmail();
-        this.dateOfBirth = LocalDate.of(2000, 1, 1);
         //this.dateOfBirth = command.getDateOfBirth();
         // this.phoneNumber = command.getPhoneNumber();
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         this.password = encoder.encode(command.getPassword());
-        this.role = command.getRole();
+       // this.role = command.getRole();
         return this;
     }
 }

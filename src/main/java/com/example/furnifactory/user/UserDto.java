@@ -16,7 +16,6 @@ public class UserDto {
     private String name;
     private String surname;
     private String email;
-    private LocalDate dateOfBirth;
     // private String phoneNumber;
 
     public static UserDto from(User user) {
@@ -24,8 +23,7 @@ public class UserDto {
                 user.getId(),
                 user.getFirst_name(),
                 user.getSurname(),
-                user.getEmail(),
-                user.getDateOfBirth()
+                user.getEmail()
                 //user.getPhoneNumber()
         );
     }

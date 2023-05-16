@@ -12,7 +12,9 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class UserService {
+    private static final Long USER_ROLE_ID = 3L;
     private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
 
     public UserDto getById(Long id) {
         return userRepository.findById(id)
@@ -32,10 +34,13 @@ public class UserService {
     public UserDto create(UserCreateCommand command) {
         User user = new User();
         user.mapPrimitives(command);
+        Role role = roleRepository.findById(USER_ROLE_ID)
+                .orElseThrow(() -> new RuntimeException("Role not found"));
+        user.setRole(role);
         return UserDto.from(userRepository.save(user));
     }
 
-    public String auth(UserAuthCommand command) {
+    public UserAuthDto auth(UserAuthCommand command) {
         User user = userRepository.findByEmail(command.getEmail());
         if (user == null) {
             throw new RuntimeException("User not found");
@@ -46,7 +51,8 @@ public class UserService {
             throw new RuntimeException("Wrong password");
         }
         JwtTokenProvider jwtTokenProvider = new JwtTokenProvider();
-        return jwtTokenProvider.generateTokenForUser(user);
+        String token = jwtTokenProvider.generateTokenForUser(user);
+        return new UserAuthDto(user.getId(), user.getFirst_name(), user.getSurname(), user.getEmail(), token);
     }
 
     public void delete(Long id) {

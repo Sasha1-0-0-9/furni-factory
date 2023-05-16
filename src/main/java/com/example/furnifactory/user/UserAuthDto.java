@@ -2,18 +2,17 @@ package com.example.furnifactory.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.time.LocalDate;
 
 @Getter
 @Setter
 @AllArgsConstructor
-public class UserCreateCommand {
-    private String first_name;
+@NoArgsConstructor
+public class UserAuthDto {
+    private Long id;
+    private String name;
     private String surname;
     private String email;
-   // private String phoneNumber;
-    private String password;
-    //private Role role;
+    private String token;
 }

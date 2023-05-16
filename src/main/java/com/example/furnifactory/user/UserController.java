@@ -33,7 +33,7 @@ public class UserController {
 
     @GetMapping("/login")
     @CrossOrigin(origins = "*", allowedHeaders = "*")
-    public ResponseEntity<String> auth(UserAuthCommand command) {
+    public ResponseEntity<UserAuthDto> auth(UserAuthCommand command) {
         return ResponseEntity.ok(userService.auth(command));
     }
 
