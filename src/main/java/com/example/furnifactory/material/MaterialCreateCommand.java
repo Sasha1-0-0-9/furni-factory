@@ -11,5 +11,4 @@ public class MaterialCreateCommand {
     private Color color;
     private long priceForSquareMeter;
     private Long manufacturerId;
-    private String countryOfOrigin;
 }

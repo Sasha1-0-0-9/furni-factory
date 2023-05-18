@@ -19,7 +19,7 @@ public class MaterialDto {
         this.id = material.getId();
         this.name = material.getMaterial_name();
         this.description = material.getDescription();
-        //this.color = material.getColor();
+        this.color = material.getColor();
         this.priceForSquareMeter = material.getPriceForSquareMeter();
         this.manufacturer = material.getManufacturer();
         //  this.countryOfOrigin = material.getCountryOfOrigin();
