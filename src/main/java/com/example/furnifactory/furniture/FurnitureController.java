@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin
 @RestController
 @RequestMapping("/api/v1/furniture")
 @RequiredArgsConstructor
@@ -18,19 +18,19 @@ public class FurnitureController {
     private final OrderService orderService;
 
     @GetMapping("/{userId}/cart")
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    //@CrossOrigin(origins = "*", allowedHeaders = "*")
     public ResponseEntity<List<FurnitureDto>> getCart(@PathVariable Long userId) {
         return ResponseEntity.ok(furnitureService.getCart(userId));
     }
 
     @PostMapping
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    //@CrossOrigin(origins = "*", allowedHeaders = "*")
     public ResponseEntity<FurnitureDto> create(FurnitureCreateCommand command) {
         return ResponseEntity.ok(furnitureService.create(command));
     }
 
     @PostMapping("/{furnitureId}/order")
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
+   // @CrossOrigin(origins = "*", allowedHeaders = "*")
     public ResponseEntity<OrderDto> order(@PathVariable Long id, OrderCreateCommand command) {
         return ResponseEntity.ok(orderService.create(id, command));
     }
