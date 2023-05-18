@@ -17,10 +17,10 @@ public class FurnitureController {
 
     private final OrderService orderService;
 
-    @GetMapping("/cart")
+    @GetMapping("/{userId}/cart")
     @CrossOrigin(origins = "*", allowedHeaders = "*")
-    public ResponseEntity<List<FurnitureDto>> getCart() {
-        return ResponseEntity.ok(furnitureService.getAll());
+    public ResponseEntity<List<FurnitureDto>> getCart(@PathVariable Long userId) {
+        return ResponseEntity.ok(furnitureService.getCart(userId));
     }
 
     @PostMapping
@@ -29,9 +29,16 @@ public class FurnitureController {
         return ResponseEntity.ok(furnitureService.create(command));
     }
 
-    @PostMapping("/{id}/order")
+    @PostMapping("/{furnitureId}/order")
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     public ResponseEntity<OrderDto> order(@PathVariable Long id, OrderCreateCommand command) {
         return ResponseEntity.ok(orderService.create(id, command));
     }
+
+    @GetMapping("/price")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    public ResponseEntity<Double> getFurniturePrice(FurnitureCreateCommand command) {
+        return ResponseEntity.ok(furnitureService.getFurniturePrice(command));
+    }
+
 }

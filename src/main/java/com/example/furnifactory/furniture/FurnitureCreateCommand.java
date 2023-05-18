@@ -16,4 +16,5 @@ public class FurnitureCreateCommand {
     private int upperSurfaceWidth;
     private int upperSurfaceHeight;
     private Set<Long> materialIds;
+    private long createdBy;
 }

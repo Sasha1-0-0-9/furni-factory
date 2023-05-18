@@ -14,8 +14,8 @@ public class MaterialController {
 
     @GetMapping
     @CrossOrigin(origins = "*", allowedHeaders = "*")
-    public ResponseEntity<List<MaterialDto>> getAll() {
-        return ResponseEntity.ok(materialService.getAll());
+    public ResponseEntity<List<MaterialDto>> getAll(MaterialSpecification specification) {
+        return ResponseEntity.ok(materialService.getAll(specification));
     }
 
     @GetMapping("/{id}")

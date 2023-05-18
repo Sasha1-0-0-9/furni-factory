@@ -1,0 +1,2 @@
+ALTER TABLE furniture
+ADD COLUMN created_by BIGINT NOT NULL DEFAULT 0;

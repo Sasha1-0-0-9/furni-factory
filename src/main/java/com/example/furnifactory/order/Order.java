@@ -9,6 +9,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
+@Table(name = "orders")
 @Entity
 @Getter
 @Setter

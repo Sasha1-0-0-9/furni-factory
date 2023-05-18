@@ -19,8 +19,8 @@ public class MaterialService {
     private final MaterialRepository materialRepository;
     private final ManufacturerRepository manufacturerRepository;
 
-    public List<MaterialDto> getAll() {
-        return materialRepository.findAll().stream()
+    public List<MaterialDto> getAll(MaterialSpecification specification) {
+        return materialRepository.findAll(specification.getFilter()).stream()
                 .map(MaterialDto::new)
                 .collect(Collectors.toList());
     }

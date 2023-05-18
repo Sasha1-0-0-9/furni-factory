@@ -34,6 +34,7 @@ public class Furniture {
     private int upperSurfaceLength;
     private int upperSurfaceWidth;
     private int upperSurfaceHeight;
+    private long createdBy;
 
     public Furniture mapPrimitives(FurnitureCreateCommand command) {
         this.furnitureType = command.getFurnitureType();

@@ -17,7 +17,7 @@ public class OrderService {
 
     public OrderDto create(Long furnitureId, OrderCreateCommand command) {
         Furniture furniture = furnitureRepository.findById(furnitureId)
-                .orElseThrow(() -> new IllegalArgumentException("Furniture with id" + command.getFurnitureId() + " not found"));
+                .orElseThrow(() -> new IllegalArgumentException("Furniture with id" + furnitureId + " not found"));
         double price = furniture.getPrice() * command.getQuantity();
 
         User user = userRepository.findById(command.getUserId())
