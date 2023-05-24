@@ -10,7 +10,7 @@ public class OrderCreateCommand {
     private int quantity;
     private String deliveryAddress;
 
-    public OrderCreateCommand(Long userId, int quantity, double price, String deliveryAddress) {
+    public OrderCreateCommand(Long userId, int quantity, String deliveryAddress) {
         this.userId = userId;
         this.quantity = quantity;
         this.deliveryAddress = deliveryAddress;

@@ -1,6 +1,8 @@
 package com.example.furnifactory.manufacturer;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,6 +25,7 @@ public class ManufacturerService {
     }
 
     public List<ManufacturerDto> getAll() {
+        SecurityContext context = SecurityContextHolder.getContext();
         return manufacturerRepository.findAll()
                 .stream()
                 .map(ManufacturerDto::new)

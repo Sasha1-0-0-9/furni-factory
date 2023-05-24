@@ -43,4 +43,9 @@ public class UserController {
         userService.delete(id);
         return ResponseEntity.ok().build();
     }
+
+    @PatchMapping("/{id}/role-update")
+    public ResponseEntity<UserDto> updateRole(@PathVariable Long id, RoleUpdateCommand command) {
+        return ResponseEntity.ok(userService.updateRole(id, command));
+    }
 }

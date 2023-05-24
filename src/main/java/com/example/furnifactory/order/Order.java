@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Table(name = "orders")
 @Entity
@@ -34,4 +35,6 @@ public class Order {
     private int quantity;
     private double price;
     private String deliveryAddress;
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
 }

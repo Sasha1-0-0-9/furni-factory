@@ -15,6 +15,8 @@ public class MaterialSpecification implements EntitySpecification<Material> {
     private Long priceForSquareMeterFrom;
     private Long priceForSquareMeterTo;
 
+    private String name;
+
     public Specification<Material> filterByPriceForSquareMeter() {
         return (root, query, criteriaBuilder) ->
                 criteriaBuilder.and(
@@ -23,12 +25,22 @@ public class MaterialSpecification implements EntitySpecification<Material> {
                 );
     }
 
+    public Specification<Material> filterByName() {
+        return (root, query, criteriaBuilder) ->
+                criteriaBuilder.or(criteriaBuilder.like(root.get("material_name"), "%" + name + "%"),
+                        criteriaBuilder.like(root.get("material_name"), "%" + name.toLowerCase() + "%"),
+                        criteriaBuilder.like(root.get("material_name"), "%" + name.toUpperCase() + "%"));
+    }
+
     @Override
     public Specification<Material> getFilter() {
         return (root, query, criteriaBuilder) -> {
             List<Predicate> predicates = new ArrayList<>();
             if (priceForSquareMeterFrom != null && priceForSquareMeterTo != null) {
                 predicates.add(filterByPriceForSquareMeter().toPredicate(root, query, criteriaBuilder));
+            }
+            if(name != null){
+                predicates.add(filterByName().toPredicate(root, query, criteriaBuilder));
             }
             return criteriaBuilder.and(predicates.toArray(Predicate[]::new));
 

@@ -22,7 +22,6 @@ public class UserService {
                 .orElseThrow(() -> new RuntimeException("User not found"));
     }
 
-    //todo filters
     public List<UserDto> getAll() {
         return userRepository.findAll()
                 .stream()
@@ -64,6 +63,14 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
-    //todo update and other methods
-
+    public UserDto updateRole(Long userId, RoleUpdateCommand command){
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        Role role = roleRepository.findAll()
+                        .stream().filter(r -> r.getType().equals(command.getRole())).findFirst()
+                .orElseThrow(() -> new RuntimeException("Role not found"));
+        user.setRole(role);
+        userRepository.save(user);
+        return UserDto.from(user);
+    }
 }

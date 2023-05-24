@@ -31,8 +31,8 @@ public class FurnitureController {
 
     @PostMapping("/{furnitureId}/order")
    // @CrossOrigin(origins = "*", allowedHeaders = "*")
-    public ResponseEntity<OrderDto> order(@PathVariable Long id, OrderCreateCommand command) {
-        return ResponseEntity.ok(orderService.create(id, command));
+    public ResponseEntity<OrderDto> order(@PathVariable Long furnitureId, OrderCreateCommand command) {
+        return ResponseEntity.ok(orderService.create(furnitureId, command));
     }
 
     @GetMapping("/price")

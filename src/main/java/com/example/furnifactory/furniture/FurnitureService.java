@@ -19,7 +19,6 @@ public class FurnitureService {
     private final MaterialService materialService;
     private final MaterialRepository materialRepository;
     private final OrderRepository orderRepository;
-    //filters by user, order creation, etc
 
     public Furniture save(Furniture furniture) {
         return furnitureRepository.save(furniture);
@@ -67,9 +66,10 @@ public class FurnitureService {
 
     private double calculatePrice(Furniture furniture) {
         double price = 0.0;
-        double volumeInCubicMeters = (furniture.getWidth() / 100) * (furniture.getLength() / 100) * (furniture.getHeight() / 100); // Перетворення сантиметрів у метри
+        double surfaceArea = 2 * ((furniture.getWidth() / 100.0 * furniture.getHeight() / 100.0)
+                + (furniture.getWidth() / 100.0 * furniture.getLength() / 100.0) + (furniture.getHeight() / 100.0 * furniture.getLength() / 100.0));
         for (Material material : furniture.getMaterials()) {
-            price += material.getPriceForSquareMeter() * 1000 * volumeInCubicMeters;
+            price += material.getPriceForSquareMeter() * surfaceArea;
         }
         return price;
     }
