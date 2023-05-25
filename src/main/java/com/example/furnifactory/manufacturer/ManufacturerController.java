@@ -39,7 +39,7 @@ public class ManufacturerController {
 
     @PostMapping("/{id}/update")
     @CrossOrigin(origins = "*", allowedHeaders = "*")
-    public ResponseEntity<ManufacturerDto> update(Long id, ManufacturerCreateCommand command) {
+    public ResponseEntity<ManufacturerDto> update(@PathVariable Long id, ManufacturerCreateCommand command) {
         return ResponseEntity.ok(manufacturerService.updateManufacturer(id, command));
     }
 }
