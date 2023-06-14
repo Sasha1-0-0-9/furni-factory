@@ -38,6 +38,4 @@ public class Material {
         this.priceForSquareMeter = command.getPriceForSquareMeter();
         return this;
     }
-
-
 }

@@ -63,4 +63,10 @@ public class OrderService {
         Order savedOrder = orderRepository.save(order);
         return new OrderDto(savedOrder);
     }
+
+    public List<OrderDto> getAll(OrderSpecification orderSpecification){
+        return orderRepository.findAll(orderSpecification.getFilter()).stream()
+                .map(OrderDto::new)
+                .collect(Collectors.toList());
+    }
 }

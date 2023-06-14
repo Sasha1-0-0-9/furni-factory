@@ -26,6 +26,7 @@ public class OrderDto {
         this.user = UserDto.from(order.getUser());
         this.status = order.getStatus();
         this.quantity = order.getQuantity();
+        this.price = order.getPrice() * order.getQuantity();
         this.deliveryAddress = order.getDeliveryAddress();
         this.createdAt = order.getCreatedAt();
     }

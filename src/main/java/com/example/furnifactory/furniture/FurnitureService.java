@@ -12,6 +12,9 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import static com.example.furnifactory.furniture.FurnitureType.SHELF;
+import static com.example.furnifactory.furniture.FurnitureType.WARDROBE;
+
 @Service
 @RequiredArgsConstructor
 public class FurnitureService {
@@ -71,6 +74,24 @@ public class FurnitureService {
         for (Material material : furniture.getMaterials()) {
             price += material.getPriceForSquareMeter() * surfaceArea;
         }
+        switch (furniture.getFurnitureType()) {
+            case WARDROBE:
+                price += furniture.getFurnitureType().getNumber_of_door_handles() * WARDROBE.getPriceForHandle();
+                break;
+            case SHELF:
+                price += furniture.getFurnitureType().getNumber_of_door_handles() * SHELF.getPriceForHandle();
+                break;
+        }
+        price += furniture.getFurnitureType().getAdditionalResourcesPrice();
         return price;
+    }
+
+    public double getFurnitureArea(FurnitureDto furniture){
+        return 2 * ((furniture.getWidth() / 100.0 * furniture.getHeight() / 100.0)
+                + (furniture.getWidth() / 100.0 * furniture.getLength() / 100.0) + (furniture.getHeight() / 100.0 * furniture.getLength() / 100.0));
+    }
+
+    public FurnitureDto get(Long id) {
+        return new FurnitureDto(furnitureRepository.findById(id).orElseThrow());
     }
 }
